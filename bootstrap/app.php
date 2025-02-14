@@ -5,7 +5,6 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Support\Facades\Log;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -25,5 +24,11 @@ return Application::configure(basePath: dirname(__DIR__))
             $articleService = app(\App\Services\ArticleService::class);
             dispatch(new NewsApiFetchArticlesJob($articleService));
         })->everyMinute($interval);
+
+        $schedule->call(function (){
+            $articleService = app(\App\Services\ArticleService::class);
+            dispatch(new GuardianApiFetchArticlesJob($articleService));
+        })->everyMinute($interval);
+
     })
     ->create();
