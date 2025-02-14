@@ -1,6 +1,6 @@
 <?php
 namespace App\Jobs;
-use App\Jobs\NewsApiFetchArticlesJob;
+// use App\Jobs\NewsApiFetchArticlesJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -28,6 +28,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $schedule->call(function (){
             $articleService = app(\App\Services\ArticleService::class);
             dispatch(new GuardianApiFetchArticlesJob($articleService));
+        })->everyMinute($interval);
+
+        $schedule->call(function (){
+            $articleService = app(\App\Services\ArticleService::class);
+            dispatch(new NYTimesApiFetchArticlesJob($articleService));
         })->everyMinute($interval);
 
     })
