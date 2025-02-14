@@ -35,4 +35,22 @@ class NewsDataFormatterService {
         return $articles;
     }
 
+    public function formatNYTimesApiData(array $rawArticles): array {
+        $articles = [];
+        foreach($rawArticles as $art) {
+            $firstName = $art['byline']['person'][0]['firstname'] ?? 'N.A';
+            $lastName = $art['byline']['person'][0]['lastname'] ?? 'N.A';
+
+            $articles[] = array(
+               'source' => 'The New York Times',
+                'category' => $art['section_name'],
+                'author' => $firstName.' '.$lastName,
+                'heading' => $art['headline']['main'],
+                'description' => $art['abstract'],
+                'news_date' => substr($art['pub_date'], 0, 10)
+            );
+        }
+        return $articles;
+    }
+    
 }
