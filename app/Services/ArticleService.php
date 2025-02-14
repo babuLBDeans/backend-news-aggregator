@@ -1,5 +1,7 @@
 <?php
 namespace App\Services;
+
+use App\Repositories\GuardianAPIRepostoryInterface;
 use App\Repositories\NewsAPIRepositoryInterface;
 use App\Repositories\ServicesInterface;
 use Illuminate\Support\Facades\Log;
@@ -7,13 +9,16 @@ use Illuminate\Support\Facades\Log;
 class ArticleService implements ServicesInterface {
     private $newsApiRepository;
     private $newsDataFormatterService;
-    public function __construct(NewsAPIRepositoryInterface $newsApiRepository) {
+    private $guardianApiRepository;
+    public function __construct(NewsAPIRepositoryInterface $newsApiRepository,
+            GuardianAPIRepostoryInterface $guardianApiRepository) {
         $this->newsApiRepository = $newsApiRepository;
+        $this->guardianApiRepository = $guardianApiRepository;
         $this->newsDataFormatterService = new NewsDataFormatterService();
     }
 
     /**
-     * The below method overrides the fetchNewsApiArticles method in ServicesInterface
+     * The below method invokes the fetchArticles method in NewsApiRepository
      * 
      */
     public function fetchNewsApiArticles() : array {
@@ -22,7 +27,20 @@ class ArticleService implements ServicesInterface {
 
         
         $articles = $this->newsDataFormatterService->formatNewsApiData($rawArticles);
+        Log::info('News api articles received');
+        return $articles;
+    }
+
+    /**
+     * The below method invokes the fetchArticles method in GuradianApiRepository
+     * 
+     */
+    public function fetchGuardianApiArticles() : array {
+        $rawArticles = $this->guardianApiRepository->fetchArticles();
+        // Log::info($rawArticles);
+        $articles = $this->newsDataFormatterService->formatGuardianApiData($rawArticles);
         Log::info($articles);
         return $articles;
     }
+
 }
