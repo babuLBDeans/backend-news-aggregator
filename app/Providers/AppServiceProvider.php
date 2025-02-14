@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\GuardianAPIRepostory;
+use App\Repositories\GuardianAPIRepostoryInterface;
 use App\Repositories\NewsAPIRepository as RepositoriesNewsAPIRepository;
 use App\Repositories\NewsAPIRepositoryInterface;
 use App\Repositories\ServicesInterface;
@@ -16,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(NewsAPIRepositoryInterface::class, RepositoriesNewsAPIRepository::class);
+        $this->app->bind(GuardianAPIRepostoryInterface::class, GuardianAPIRepostory::class);
+
         $this->app->bind(ServicesInterface::class, ArticleService::class);
     }
 
