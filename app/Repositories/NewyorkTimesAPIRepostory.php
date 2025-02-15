@@ -7,7 +7,7 @@ class NewyorkTimesAPIRepostory implements NewyorkTimesAPIRepostoryInterface {
     {
         $client = new Client();
         $url = env('NEWYORK_TIMES_API_URL');
-        $response = $client->get('', [
+        $response = $client->get($url, [
             'query' => [
                 'api-key' => env('NY_TIMES_API_KEY'),
                 'fq' => env('CATEGORY')
