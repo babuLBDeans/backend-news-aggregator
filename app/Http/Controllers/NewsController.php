@@ -14,9 +14,13 @@ class NewsController extends Controller
         $this->newsService = $newsService;
     }
 
+    /**
+     * @param Illuminate\Http\Requestobject from The calling end.
+     * @return json response
+     * 
+     */
     public function searchArticles(Request $request) {
-        $filters = $request->only(['category', 'author']);
-        $news = $this->newsService->searchArticles($filters);
+        $news = $this->newsService->searchArticles($request);
 
         return response()->json($news);
     }

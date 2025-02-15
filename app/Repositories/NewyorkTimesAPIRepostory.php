@@ -6,12 +6,8 @@ class NewyorkTimesAPIRepostory implements NewyorkTimesAPIRepostoryInterface {
     public function fetchArticles(): array
     {
         $client = new Client();
-       /**
-        * https://api.nytimes.com/svc/search/v2/articlesearch.json?
-        * fq=news_desk:(%22Sports%22,%20%22Foreign%22)&
-        * api-key=vDQsnVw6vrdsg2863ZkPWqbADlvFLFWy
-        */
-        $response = $client->get('https://api.nytimes.com/svc/search/v2/articlesearch.json', [
+        $url = env('NEWYORK_TIMES_API_URL');
+        $response = $client->get('', [
             'query' => [
                 'api-key' => env('NY_TIMES_API_KEY'),
                 'fq' => env('CATEGORY')

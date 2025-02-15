@@ -25,38 +25,39 @@ class ArticleService implements ServicesInterface {
 
     /**
      * The below method invokes the fetchArticles method in NewsApiRepository
+     * @return The method will return an array of articles
      * 
      */
     public function fetchNewsApiArticles() : array {
 
         $rawArticles = $this->newsApiRepository->fetchArticles();
-
         
         $articles = $this->newsDataFormatterService->formatNewsApiData($rawArticles);
-        //Log::info('News api articles received');
+        Log::info('News api articles received');
         return $articles;
     }
 
     /**
      * The below method invokes the fetchArticles method in GuradianApiRepository
+     * @return The method will return an array of articles
      * 
      */
     public function fetchGuardianApiArticles() : array {
         $rawArticles = $this->guardianApiRepository->fetchArticles();
-        // Log::info($rawArticles);
         $articles = $this->newsDataFormatterService->formatGuardianApiData($rawArticles);
-        //Log::info($articles);
+        Log::info('The guardian api articles received');
         return $articles;
     }
 
     /**
      * The below method invokes the fetchArticles method in Newyork times Repository
+     * @return The method will return an array of articles
      * 
      */
     public function fetchNYTimesApiArticles() : array {
         $rawArticles = $this->nyTimesApiRepository->fetchArticles();
         $articles = $this->newsDataFormatterService->formatNYTimesApiData($rawArticles);
-        Log::info($articles);
+        Log::info('New york times api articles received');
         return $articles;
     }
 

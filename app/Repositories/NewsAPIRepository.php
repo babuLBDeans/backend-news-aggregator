@@ -8,9 +8,9 @@ class NewsAPIRepository implements NewsAPIRepositoryInterface {
     public function fetchArticles(): array
     {
         $client = new Client();
-        //https://newsapi.org/v2/everything?&q=sports or election
+        $url = env('NEWS_API_URL');
 
-        $response = $client->get('https://newsapi.org/v2/everything', [
+        $response = $client->get($url, [
             'query' => [
                 'apiKey' => env('NEWS_API_KEY'),
                 'sortBy' => 'publishedAt',
