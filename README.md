@@ -64,7 +64,7 @@ Versions on my machine are:
 
 ## API Endpoints
 
-    1. **Fetch Articles by Category & Author**
+1. **Fetch Articles by Category & Author**
 
     **Endpoints:**
     ```sh
@@ -72,6 +72,6 @@ Versions on my machine are:
     GET /news?source={source}&author={author}
     GET /news?source={source}&author={author}&news_date={news_date}
     ```
-**Note**
+    **Note**
 
     You can try any combination of source, category, author and news_date
