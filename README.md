@@ -1,4 +1,4 @@
-# backend-news-aggregator - README
+# Backend-News-Aggregator - README
 News Aggregator Backend API's
 
 ## Prerequisites
