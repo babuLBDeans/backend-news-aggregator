@@ -60,7 +60,7 @@ Versions on my machine are:
     php artisan serve
     ```
 
-    This will start the server at: http://127.0.0.1:8000
+    You can access the application at: http://127.0.0.1:8000
 
 ## API Endpoints
 
@@ -72,6 +72,25 @@ Versions on my machine are:
     GET /news?source={source}&author={author}
     GET /news?source={source}&author={author}&news_date={news_date}
     ```
-    **Note**
-
+    
     You can try any combination of source, category, author and news_date
+
+2. **CURL Requests for Frontend Developers**
+    ```sh
+    curl -X GET "http://127.0.0.1:8000/api/news?category=sports" -H "Accept: application/json"
+
+    curl -X GET "http://127.0.0.1:8000/api/news?category=sports&news_date=2025-02-14" -H "Accept: application/json"
+    ```
+
+7. **Scheduler Setup**
+
+Add the following cron job to your server to run the scheduler:
+    ```sh
+    * * * * * php /path-to-your-project/artisan schedule:run >> /dev/null 2>&1
+    ```
+
+## Contact
+
+In case of any queries or issues, please contact me at **[babukhan@hotmail.com](mailto:babukhan@hotmail.com)** or **+92 335 9144 675**.
+
+
