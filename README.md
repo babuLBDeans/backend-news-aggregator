@@ -71,7 +71,7 @@ Versions on my machine are:
     GET /news?source={source}
     GET /news?source={source}&author={author}
     GET /news?source={source}&author={author}&news_date={news_date}
-    ```sh
-    **Note**
+    ```
+**Note**
 
     You can try any combination of source, category, author and news_date
