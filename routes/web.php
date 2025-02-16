@@ -25,5 +25,5 @@ Route::get('/', function () {
   |
  */
 Route::middleware('api')->group(function () {
-    Route::get('/api/news', [NewsController::class, 'searchArticles']);
+    Route::get('/api/news', [NewsController::class, 'searchArticles'])->name('sample-request');
 });
