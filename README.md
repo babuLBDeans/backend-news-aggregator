@@ -23,6 +23,7 @@ Versions on my machine are:
     ```
 
 3. **Configure Environment**
+
     Copy the .env.example file to .env and configure following variables and API keys:
     ```sh
     NEWS_API_URL=https://newsapi.org/v2/everything
@@ -46,13 +47,18 @@ Versions on my machine are:
     ```
 
 4. **Generate Application Key**
+    ```sh
     php artisan key:generate
+    ```
 
 5. **Run Migrations**
+    ```sh
     php artisan migrate
-
+    ```
 6. **Start the Application**
+    ```sh
     php artisan serve
+    ```
 
     This will start the server at: http://127.0.0.1:8000
 
@@ -60,5 +66,12 @@ Versions on my machine are:
 
     1. **Fetch Articles by Category & Author**
 
-    **Endpoint:**
-    GET /news?category={category}&author={author}
+    **Endpoints:**
+    ```sh
+    GET /news?source={source}
+    GET /news?source={source}&author={author}
+    GET /news?source={source}&author={author}&news_date={news_date}
+    ```sh
+    **Note**
+
+    You can try any combination of source, category, author and news_date
